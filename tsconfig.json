@@ -11,6 +11,12 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": { 
+      "@shared/*": ["./src/shared/*"],
+      "@node_modules/*": ["./node_modules/*"],
+      "@app/*": ["/src/app/*"],
+      "@abp/*": ["./node_modules/abp-ng2-module/dist/src/*"]
+    }
   }
 }
