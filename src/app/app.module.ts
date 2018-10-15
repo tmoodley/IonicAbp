@@ -10,10 +10,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './service/auth.service';
-import { TokenAuthServiceProxy } from '../shared/service-proxies/service-proxies';
+import { TokenAuthServiceProxy, API_BASE_URL } from '../shared/service-proxies/service-proxies';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from './service/token.service';
 import { IonicStorageModule } from '@ionic/Storage';
+import { AppConsts } from '../shared/AppConsts';
+
+export function getRemoteServiceBaseUrl(): string {
+  return AppConsts.remoteServiceBaseUrl;
+}
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +34,7 @@ import { IonicStorageModule } from '@ionic/Storage';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: API_BASE_URL, useFactory: getRemoteServiceBaseUrl },
     AuthService,
     TokenAuthServiceProxy,
     TokenService
