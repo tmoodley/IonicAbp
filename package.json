@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-beta.12",
     "@ionic/pro": "2.0.3",
+    "@ionic/storage": "^2.2.0",
     "@types/moment-timezone": "^0.5.9",
     "abp-ng2-module": "^3.2.2",
     "abp-web-resources": "^3.8.4",
