@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from './service/token.service';
 import { IonicStorageModule } from '@ionic/Storage';
 import { AppConsts } from '../shared/AppConsts';
+import { HttpInterceptorService } from './service/http-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LogService } from './service/log-service.service';
+import { UtilService } from './service/util.service';
 
 export function getRemoteServiceBaseUrl(): string {
   return AppConsts.remoteServiceBaseUrl;
@@ -37,7 +41,9 @@ export function getRemoteServiceBaseUrl(): string {
     { provide: API_BASE_URL, useFactory: getRemoteServiceBaseUrl },
     AuthService,
     TokenAuthServiceProxy,
-    TokenService
+    TokenService,
+    LogService,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })

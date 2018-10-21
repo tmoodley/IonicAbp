@@ -9,8 +9,9 @@ import {
 } from '../../shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AppConsts } from '../../shared/AppConsts';
 import { TokenService } from './token.service';
+import { AlertController } from '@ionic/angular';
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +19,44 @@ export class AuthService {
   authenticateModel: AuthenticateModel;
   authenticateResult: AuthenticateResultModel;
   rememberMe: boolean;
+  apiUrl = 'http://localhost:21021';
   constructor(
     private _tokenAuthService: TokenAuthServiceProxy,
     private _router: Router,
-    private _tokenService: TokenService
+    private _tokenService: TokenService,
+    public http: HttpClient
   ) {}
 
-  signIn(email: string, password: string) {}
+  signIn(_email: string, _password: string) {
+    const content_ = JSON.stringify(this.authenticateModel);
+
+    let options_: any = {
+      observe: 'response',
+      responseType: 'blob',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(
+          this.apiUrl + '/api/TokenAuth/Authenticate',
+          content_,
+          options_
+        )
+        .subscribe(
+          res => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  
 
   authenticate(finallyCallback?: () => void): void {
     finallyCallback = finallyCallback || (() => {});
@@ -56,7 +88,8 @@ export class AuthService {
       );
     } else {
       // Unexpected result!
-      this._router.navigate(['login']);
+      alert('problem');
+      // this._router.navigate(['login']);
     }
   }
 

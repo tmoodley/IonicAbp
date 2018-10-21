@@ -31,6 +31,7 @@
     "abp-web-resources": "^3.8.4",
     "animations": "0.0.0",
     "core-js": "^2.5.3",
+    "ionic-logging-service": "^5.1.0",
     "jQuery": "^1.7.4",
     "nswag": "^11.20.1",
     "rxjs": "6.2.2",
