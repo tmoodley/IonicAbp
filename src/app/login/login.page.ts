@@ -21,7 +21,13 @@ export class LoginPage implements OnInit {
     private _router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._utilService.getCookieValue('token');
+    if (this._utilService.token != null) {
+      this._router.navigate(['home']);
+    }
+  }
+
   async onLogin(form: NgForm) {
     const loading = await this._loadingCtrl.create({
       message: 'Loggin you in...',

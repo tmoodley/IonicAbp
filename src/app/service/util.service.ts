@@ -4,14 +4,15 @@ import { Storage } from '@ionic/Storage';
   providedIn: 'root'
 })
 export class UtilService {
+  public token = '';
   constructor(private storage: Storage) {}
 
   getCookieValue(key: string): any {
     this.storage.ready().then(() => {
       this.storage
         .get(key)
-        .then(token => {
-          return token;
+        .then(_token => {
+          this.token = _token;
         })
         .catch(console.log);
     });
