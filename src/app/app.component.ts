@@ -17,13 +17,18 @@ export class AppComponent {
     },
     {
       title: 'Zones',
-      url: '/Zones',
+      url: '/zones',
       icon: 'list'
     },
     {
       title: 'Login',
       url: '/login',
-      icon: 'finger-print'
+      icon: 'log-in'
+    },
+    {
+      title: 'Logout',
+      url: '/logout',
+      icon: 'exit'
     }
   ];
 

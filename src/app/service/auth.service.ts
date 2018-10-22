@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { TokenService } from './token.service';
 import { AlertController } from '@ionic/angular';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'; 
+import { AppSettings } from '../../AppSettings';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +21,7 @@ export class AuthService {
   authenticateModel: AuthenticateModel;
   authenticateResult: AuthenticateResultModel;
   rememberMe: boolean;
-  apiUrl = 'http://localhost:21021';
+
   constructor(
     private _tokenAuthService: TokenAuthServiceProxy,
     private _router: Router,
@@ -41,7 +43,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.http
         .post(
-          this.apiUrl + '/api/TokenAuth/Authenticate',
+        AppSettings.API_ENDPOINT + '/api/TokenAuth/Authenticate',
           content_,
           options_
         )
@@ -56,56 +58,20 @@ export class AuthService {
     });
   }
 
-  
+  login(): Observable<any> {
+    const content_ = JSON.stringify(this.authenticateModel);
 
-  authenticate(finallyCallback?: () => void): void {
-    finallyCallback = finallyCallback || (() => {});
-
-    this._tokenAuthService
-      .authenticate(this.authenticateModel)
-      .pipe(
-        finalize(() => {
-          finallyCallback();
-        })
+    const options_: any = {
+      observe: 'response', responseType: 'json', headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
       )
-      .subscribe((result: AuthenticateResultModel) => {
-        this.processAuthenticateResult(result);
-      });
-  }
-
-  private processAuthenticateResult(
-    authenticateResult: AuthenticateResultModel
-  ) {
-    this.authenticateResult = authenticateResult;
-
-    if (authenticateResult.accessToken) {
-      // Successfully logged in
-      this.login(
-        authenticateResult.accessToken,
-        authenticateResult.encryptedAccessToken,
-        authenticateResult.expireInSeconds,
-        this.rememberMe
-      );
-    } else {
-      // Unexpected result!
-      alert('problem');
-      // this._router.navigate(['login']);
-    }
-  }
-
-  private login(
-    accessToken: string,
-    encryptedAccessToken: string,
-    expireInSeconds: number,
-    rememberMe?: boolean
-  ): void {
-    const tokenExpireDate = rememberMe
-      ? new Date(new Date().getTime() + 1000 * expireInSeconds)
-      : undefined;
-
-    this._tokenService.setToken(accessToken, tokenExpireDate);
-
-    this._router.navigate(['home']);
+    };
+    return this.http.post(AppSettings.API_ENDPOINT + '/api/TokenAuth/Authenticate',
+      content_,
+      options_);
   }
 
   private clear(): void {

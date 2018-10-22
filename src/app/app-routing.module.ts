@@ -12,7 +12,9 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'Zones', loadChildren: './zones/zones.module#ZonesPageModule' }
+  { path: 'zones', loadChildren: './zones/zones.module#ZonesPageModule' },
+  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' }
+
 
 ];
 

@@ -23,9 +23,9 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this._utilService.getCookieValue('token');
-    if (this._utilService.token != null) {
-      this._router.navigate(['home']);
-    }
+    // if (this._utilService.token.length > 0) {
+    //   this._router.navigate(['home']);
+    // }
   }
 
   async onLogin(form: NgForm) {
