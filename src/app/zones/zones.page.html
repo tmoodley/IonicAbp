@@ -4,11 +4,17 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Zones 
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  GuardForce Mobile App 
+<ion-list>
+  <ion-item *ngFor="let zone of zones">
+    <ion-label>
+      <h2>{{zone.name}}</h2> 
+      <p>{{zone.meetingPoint}}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>

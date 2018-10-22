@@ -19,6 +19,7 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogService } from './service/log-service.service';
 import { UtilService } from './service/util.service';
+import { ZonesService } from './service/zones.service';
 
 export function getRemoteServiceBaseUrl(): string {
   return AppConsts.remoteServiceBaseUrl;
@@ -43,7 +44,8 @@ export function getRemoteServiceBaseUrl(): string {
     TokenAuthServiceProxy,
     TokenService,
     LogService,
-    UtilService
+    UtilService,
+    ZonesService
   ],
   bootstrap: [AppComponent]
 })
