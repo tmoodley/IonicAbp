@@ -32,7 +32,7 @@ export function getRemoteServiceBaseUrl(): string {
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot() 
   ],
   providers: [
     StatusBar,

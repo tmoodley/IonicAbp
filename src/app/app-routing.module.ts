@@ -13,9 +13,11 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'zones', loadChildren: './zones/zones.module#ZonesPageModule' },
-  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' }
-
-
+  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
+  {
+    path: 'parades/:id',
+    loadChildren: './parades/parades.module#ParadesPageModule'
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,8 @@
+import { RouterModule } from '@angular/router';
+import { ParadesPage } from './../parades/parades.page';
 import { Component, OnInit } from '@angular/core';
 import { ZonesService } from '../service/zones.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-zones',
@@ -7,8 +10,9 @@ import { ZonesService } from '../service/zones.service';
   styleUrls: ['./zones.page.scss'],
 })
 export class ZonesPage implements OnInit {
-
-  constructor(private zonesService: ZonesService) { }
+  constructor(private zonesService: ZonesService,
+              public navCtrl: NavController,
+              public router: RouterModule) { }
   zones: any;
   ngOnInit() {
    this.getZones();
@@ -20,4 +24,7 @@ export class ZonesPage implements OnInit {
     });
   }
 
+  pushPage(id: string) {
+    this.navCtrl.navigateForward('/parades/' + id);
+  }
 }
