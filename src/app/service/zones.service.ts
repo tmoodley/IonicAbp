@@ -13,8 +13,7 @@ export class ZonesService {
     const options_: any = { observe: 'response', responseType: 'json', headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${this.utilService.token}`
+          Accept: 'application/json'
         }
       ) };
     return this.http.get(
@@ -29,8 +28,7 @@ export class ZonesService {
       responseType: 'json',
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${this.utilService.token}`
+        Accept: 'application/json'
       })
     };
     return this.http.get(

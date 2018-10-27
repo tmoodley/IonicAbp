@@ -45,7 +45,7 @@ export function getRemoteServiceBaseUrl(): string {
     LogService,
     UtilService,
     ZonesService,
-    //httpInterceptorProviders
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
