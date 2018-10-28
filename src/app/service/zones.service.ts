@@ -8,14 +8,22 @@ import { UtilService } from './util.service';
   providedIn: 'root'
 })
 export class ZonesService {
-  constructor(public http: HttpClient, public utilService: UtilService) {}
+  cookieTenantIdValue;
+  constructor(public http: HttpClient, public utilService: UtilService) {
+    this.utilService
+      .getCookie('Abp.TenantId')
+      .then(data => (this.cookieTenantIdValue = data));
+  }
   getZones(): Observable<any> {
-    const options_: any = { observe: 'response', responseType: 'json', headers: new HttpHeaders(
-        {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      ) };
+    const options_: any = {
+      observe: 'response',
+      responseType: 'json',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        // 'Abp.TenantId': this.cookieTenantIdValue
+      })
+    };
     return this.http.get(
       AppSettings.API_ENDPOINT + '/api/Zones/GetAll',
       options_

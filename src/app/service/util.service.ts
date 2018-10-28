@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/Storage';
+import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UtilService {
-  public token = '';
+  public token = "";
   constructor(private storage: Storage) {}
 
   getCookieValue(key: string): any {
@@ -18,13 +19,17 @@ export class UtilService {
     });
   }
 
+  public async getCookie(key: string) {
+    return await this.storage.get(key);
+  }
+
   setCookieValue(
     key: string,
     value: string,
     expireDate?: Date,
     path?: string
   ): void {
-    this.storage.set('token', value);
+    this.storage.set(key, value);
     this.storage.set('expireDate', expireDate);
   }
 

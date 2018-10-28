@@ -5,6 +5,8 @@
 </ion-header>
 
 <ion-content padding>
+<ion-label>Current tenant: {{tenantName != null ? tenantName : 'Not selected'}}</ion-label>
+<ion-button shape="round" color="primary" fill="outline" (click)="changeTenant()" block >Change</ion-button>
 <form #f="ngForm" (ngSubmit)="onLogin(f)">
   <ion-list>
     <ion-item>
