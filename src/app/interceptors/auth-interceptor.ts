@@ -6,13 +6,11 @@ import { UtilService } from '../service/util.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private util: UtilService) { 
-        
+    constructor(private util: UtilService) {
+        this.util.getCookieValue('token');
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        this.util.getCookieValue('token');
-
         // Clone the request and replace the original headers with
         // cloned headers, updated with the authorization.
         const authReq = req.clone({
