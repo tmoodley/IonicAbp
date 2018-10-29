@@ -29,16 +29,13 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    this._utilService.getCookieValue('token');
+    this._utilService.deleteCookie('token');
     this._utilService
     .getCookie('Abp.TenantId')
     .then(data => this.cookieTenantIdValue = data);
     this._utilService
       .getCookie('Abp.TenantName')
       .then(data => this.tenantName = data);
-    if (this._utilService.token.length > 0) {
-      this._router.navigate(['home']);
-    }
   }
 
   async onLogin(form: NgForm) {

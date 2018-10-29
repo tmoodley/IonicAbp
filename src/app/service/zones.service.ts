@@ -10,9 +10,7 @@ import { UtilService } from './util.service';
 export class ZonesService {
   cookieTenantIdValue;
   constructor(public http: HttpClient, public utilService: UtilService) {
-    this.utilService
-      .getCookie('Abp.TenantId')
-      .then(data => (this.cookieTenantIdValue = data));
+    this.utilService.getCookieValue('token');
   }
   getZones(): Observable<any> {
     const options_: any = {
@@ -20,8 +18,7 @@ export class ZonesService {
       responseType: 'json',
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // 'Abp.TenantId': this.cookieTenantIdValue
+        Accept: 'application/json'
       })
     };
     return this.http.get(

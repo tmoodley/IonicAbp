@@ -16,10 +16,8 @@ export class LogoutPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._utilService.deleteCookie('token');
-    if (this._utilService.token != null) {
-      this._router.navigate(['login']);
-    }
+    this._utilService
+      .deleteCookie('token');
+    this._router.navigate(['login']);
   }
-
 }
